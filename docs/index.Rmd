@@ -1,45 +1,84 @@
 ---
-title: "Your A4 Report Title (TODO: Revise title)"
-author: "Your Name"
-date: '2022-11-01'
+title: "Incarceration in the United States"
+author: "Drew Blik"
+date: '2022-11-22'
 output: html_document
 ---
 
-```{r echo=FALSE, eval=TRUE, message=FALSE}
+```{r echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE}
 source("../source/a4-helpers.R")
 source("../source/analysis.R")
 ```
 
 ## Abstract 
-[TODO: Include a short abstract (about 50 words)]
-
-# Test (TODO: Remove before submission!!)
-```{r echo=FALSE}
-q1_string <- test_query1()
-num <- 5
-```
-As you know, this is a markdown report. The [R Markdown Cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) is **useful!**
-
-* Here's a test of a dynamic variable. Say **"`r q1_string`!!!** 
-* Here's another test. A vector
-of numbers: `r test_query2(num)`.
-
-Recall that _{r echo=TRUE}_ can be used to display the code, 
-which is very useful when developing and debugging a report. Here's an example: 
-
-```{r echo=TRUE}
-num <- 5
-sum <- sum(test_query2(num))
-print(sum)
-```
+This report investigates incarceration trends in the United States. Specifically, how the incarcerate population has changed over time in the entire country and select states. Also, how other factors like population density play a role in inequalities. Finally, geographic differences are investigated to see how inequalities differ between all the states.
 
 ## Introduction 
-[TODO]
 
-## Data Summary 
-[TODO]
+My analysis on incarceration trends in the U.S. will focus on the disproportionate amount of black people who are put in jail. This is a result of the United States' history of systemic racism and inequality. While the structural domain of domination is not as prevalent as it once was in the U.S., remnants of its damage can be seen in the disciplinary domain. 
 
-[TODO ... other sections ... See Canvas for details]
+The direct stakeholders involved in this research include myself, as I am learning more deeply about how profound the incarceration inequalities are across the country. Other direct stakeholders include my family this Thanksgiving, because I am going to show them these graphs and my analysis to influence their outdated views :). As for indirect stakeholders, I believe this research is prevalent to police officers and city officials to reexamine their policing practices and policies that may be actively harming black and brown people. 
 
-_All the very best with your work!_
+For this analysis, the questions I plan to answer are:
+1. How has the jail population changed over time in the U.S.?
+2. How has the jail population changed over time in certain states like Washington and California?
+3. How does population density effect the proportion of black people in jail?
+4. What does jailing inequality look like across the country?
+
+
+## Section 2: Data Summary 
+
+Based on the calculated values, the black population in Washington have the 
+highest percentage of their population in prison with `r black_WA_jail_prop_percent`%. This is despite being the second smallest population after Natives (`r total_native_pop_WA` people) in the state with
+`r total_black_pop_WA` black people in 2018. Even in a state that is as progressive as Washington, it is unfortunate to see that black people are still jailed more frequently than any other race.
+
+The map showcasing the percentage of black people in prison over each state's black population in 2000 portrayed that Southern states such as Mississippi and Georgia had the highest percentages compared to the rest of the country.
+
+## Section 3: Growth of the U.S. Prison Population
+
+```{r jailpopovertime, echo=FALSE, message=FALSE}
+plot_jail_pop_for_us()
+```
+**Figure 1.** The jail population in the U.S. has increased dramatically form 1970 to 2018. 
+
+
+This graph shows the huge increase in the United States jail population over the last half century. From 1970 to 1980, there was not any huge increases. However, when Reagan was elected in the early 1980s and began the war on drugs, this began a sharp increase in the jail population. The jail population has nearly quadrupled in the last 40 years.
+
+
+## Section 4: Growth of the U.S. Prison Population by State
+
+```{r jailbystates, echo=FALSE, message=FALSE}
+plot_jail_pop_by_states(c("WA", "CA", "NY", "AL", "GA"))
+```
+**Figure 2.** Most states saw only increases in jail populations, except for New York which decreased. 
+
+
+This graph shows the increases in jail population in Alabama, California, Georgia, and Washington. In New York, the jail population went down after 2000! Most states had increases starting in 1980. California's jail population more than doubled from 1980 to 1990. I included Washington because it's my home state. I chose California because it is the most populous state. I included Georgia and Alabama to represent the south I included New York because it is know to have a high crime rate due to New York City.
+
+
+## Section 5: Effect of Population Density on Jailing Inequality
+
+```{r blackdensityprop, echo=FALSE, message=FALSE}
+plot_density_proportion()
+```
+**Figure 3.** Proportion of imprisoned black people is highest when population density is about 250 people per square mile.
+
+The question that I had was how does population density effect the proportion of black people in jail? I learned that jailing inequality peaked when population density was about 250 people per square mile. This chart revealed that when population density is below 100, there is relatively little inequality in jailing.
+
+
+
+## Section 6: Investigating Geographical Inequalities
+
+```{r blackprop, echo=FALSE, message=FALSE}
+plot_black_prop_map()
+```
+**Figure 4.** Proportion of imprisoned black people over total jail populations is higher in the south than the rest of the U.S.
+
+I created this map with the purpose of finding which states had the highest percentage of their black population in 2000. This map shows that southern states had the highest percentage of their black population in jail. Some states with the highest percentages were South Carolina and Mississippi. California also had a significant percentage of black people in prison, likely because of hosting multiple metropolitan areas with prior redlining.
+
+
+
+
+
+
 
